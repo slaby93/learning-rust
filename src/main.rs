@@ -2,8 +2,7 @@ extern crate minigrep;
 use minigrep::Config;
 
 fn main() {
-    let args = std::env::args().collect::<Vec<_>>();
-    let config = Config::new(&args).unwrap_or_else(|err| {
+    let config = Config::new(std::env::args()).unwrap_or_else(|err| {
         eprintln!("Problem parsing arguments: {}", err);
         std::process::exit(1);
     });
