@@ -4,11 +4,13 @@ use minigrep::Config;
 fn main() {
     let args = std::env::args().collect::<Vec<_>>();
     let config = Config::new(&args).unwrap_or_else(|err| {
+        eprintln!("Problem parsing arguments: {}", err);
         std::process::exit(1);
     });
 
 
-    if let Err(e) = minigrep::run(config) {
+    if let Err(err) = minigrep::run(config) {
+        eprintln!("Problem running minigrep: {}", err);
         std::process::exit(1);
     };
 }
